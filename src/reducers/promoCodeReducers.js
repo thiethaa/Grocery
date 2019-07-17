@@ -1,4 +1,4 @@
-import { PROMO_CODE } from '../actions/types';
+import { PROMO_CODE} from '../actions/types';
 
 const initialState ={
     open : false,
@@ -16,3 +16,5 @@ export default function (state= initialState, action){
                 return state;
     }
 }
+
+

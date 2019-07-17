@@ -14,6 +14,8 @@ import PromoCodeDiscounts from './componen/PromoCode/PromoCode';
 import { connect } from 'react-redux';
 import { handleChange } from './actions/promoCodeActions';
 
+
+
 class App extends Component {
 constructor(props){
   super(props);
@@ -23,7 +25,8 @@ constructor(props){
     pickupSavings: -3.85,
     taxes: 0,
     estimatedTotal: 0,
-    disablePromoButton: false
+    disablePromoButton: false,
+    error: true
   }
 }
 
@@ -41,18 +44,23 @@ componentDidMount= () => {
   );
 }
 
+  
   giveDiscountHandler = () => {
     if (this.props.promoCode === 'OMPLF#2019'){
       this.setState({
-        estimatedTotal : this.state.estimatedTotal * 0.9
-      },
+        estimatedTotal : this.state.estimatedTotal * 0.9 ,
+        error: false 
+      }, 
       function (){
         this.setState({
           disablePromoButton:true
         });
       }
       );
-    }
+    } else 
+      this.setState({
+        error:'Incorrect Promo Code!!!'
+      })
   };
 
   render() {
@@ -65,10 +73,12 @@ componentDidMount= () => {
           <hr/>
           <EstimatedTotal price={this.state.estimatedTotal.toFixed(2)}/>
           <ItemDetails price={this.state.estimatedTotal.toFixed(2)} />
+         
           <PromoCodeDiscounts
             giveDiscount={()=> this.giveDiscountHandler()}
             isDisabled={this.state.disablePromoButton}
           />
+          {this.state.error && <p style={{color:'red', textAlign:'center'}}>{this.state.error}</p>}
         </Container>
       </div>
     )

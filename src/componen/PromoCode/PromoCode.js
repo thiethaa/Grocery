@@ -18,7 +18,7 @@ constructor(props){
     super(props);
 
         this.state={
-            open:false
+            open:false,                 
         };
 }
 
@@ -27,6 +27,7 @@ handleChange = e => {
 };
 
     render() {
+        
         return (
             <div>
                 <Button
@@ -50,6 +51,7 @@ handleChange = e => {
                                     onChange={this.handleChange}
                                 />
                                 </FormGroup>
+                               
                                 <Button
                                 block
                                 variant="success"
@@ -58,6 +60,7 @@ handleChange = e => {
                                 onClick={this.props.giveDiscount}
                                 >Apply
                                 </Button>
+                                
                             </Form>
                         </Col>
                     </Row>
